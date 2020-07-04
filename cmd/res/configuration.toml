@@ -1,5 +1,5 @@
 [Service]
-Host = "localhost"
+Host = "0.0.0.0"
 Port = 49991
 ConnectRetries = 3
 Labels = []
@@ -21,7 +21,7 @@ EnableRemote = false
 File = "./device-Modbus.log"
 
 [Writable]
-LogLevel = "INFO"
+LogLevel = "DEBUG"
 
 [Clients]
   [Clients.Data]
@@ -52,5 +52,16 @@ LogLevel = "INFO"
   MaxCmdValueLen = 256
   RemoveCmd = ""
   RemoveCmdArgs = ""
-  ProfilesDir = "./res"
-  
+  ProfilesDir = "./res/example"
+
+# Pre-define Devices
+[[DeviceList]]
+  Name = "Modbus-TCP-test-device"
+  Profile = "Network-Power-Meter"
+  Description = "This device is a product for monitoring and controlling digital inputs and outputs over a LAN."
+  labels = [ "Air conditioner","modbus TCP" ]
+  [DeviceList.Protocols]
+    [DeviceList.Protocols.modbus-tcp]
+      Address = "192.168.1.19"
+      Port = "10502"
+      UnitID = "1"
